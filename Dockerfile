@@ -10,13 +10,13 @@ WORKDIR /app
 RUN curl -L -o gobackup.tar.gz https://github.com/${GOBACKUP_DIST_FLAVOUR}/gobackup/releases/download/${GOBACKUP_DIST_TAG}/gobackup-linux-amd64.tar.gz && tar -xvf gobackup.tar.gz
 
 # Alpine doesn't work, archives aren't created. Probably due to musl libc
-FROM fedora:41
+FROM fedora:44
 WORKDIR /app
 
 COPY mongodb.repo /etc/yum.repos.d
 
-RUN dnf install https://download.postgresql.org/pub/repos/yum/reporpms/F-41-x86_64/pgdg-fedora-repo-latest.noarch.rpm -y \
-    && dnf install postgresql16 mariadb redis mongodb-org-tools python cronie procps-ng vim htop strace --refresh -y \
+RUN dnf install https://download.postgresql.org/pub/repos/yum/reporpms/F-44-x86_64/pgdg-fedora-repo-latest.noarch.rpm -y \
+    && dnf install postgresql18 mariadb redis mongodb-org-tools python cronie procps-ng vim htop strace --refresh -y \
     && dnf clean all
 
 COPY --from=interpolator-bin /app/interpolator .
