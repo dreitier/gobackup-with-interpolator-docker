@@ -38,7 +38,7 @@ jobs:
 
     - name: Publish to Registry
       id: publish_to_registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       env:
         GOBACKUP_DIST_TAG: ${{ steps.git_info.outputs.GOBACKUP_DIST_TAG }}
         GOBACKUP_DIST_FLAVOUR: ${{ steps.git_info.outputs.GOBACKUP_DIST_FLAVOUR }}
